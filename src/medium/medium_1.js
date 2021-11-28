@@ -61,6 +61,7 @@ export function getStatistics(array) {
     result[1]=getSum(array);
     result[2]=getSum(array)/array.length;
     result[3]=getMedian(array);
+    array.sort((a, b) => a - b);
     result[4]=array[0];
     result[5]=array[array.length-1];
     result[6]=variance(array, result[2]);
