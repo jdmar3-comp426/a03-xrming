@@ -56,7 +56,7 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
-    let result = new array(8);
+    let result = new Array(8);
     result[0]=array.length;
     result[1]=getSum(array);
     result[2]=getSum(array)/array.length;
