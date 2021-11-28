@@ -57,13 +57,15 @@ export function getMedian(array) {
  */
 export function getStatistics(array) {
     const map1 = new Map();
+    let mean=getSum(array)/array.length;
     map1.set('length',array.length);
     map1.set('sum',getSum(array));
-    map1.set('mean',getSum(array)/array.length);
+    map1.set('mean',mean);
     map1.set('median',getMedian(array));
     map1.set('min',array[0]);
     map1.set('max',array[array.length-1]);
-    map1.set('variance',variance(array, mean));
+    let arrayvariance=variance(array, mean);
+    map1.set('variance',arrayvariance);
     map1.set('standard_deviation', Math.sqrt(arrayvariance));
     return map1;
 }
