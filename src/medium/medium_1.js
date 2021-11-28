@@ -58,10 +58,10 @@ export function getMedian(array) {
 export function getStatistics(array) {
     let result = new Array(8);
     let mean=getSum(array)/array.length;
-    result[0]="length: "+array.length;
-    result[1]="sum: "+ getSum(array);
-    result[2]="mean: "+ mean;
-    result[3]="median: "+ getMedian(array);
+    result[0]='length: '+array.length;
+    result[1]='sum: '+ getSum(array);
+    result[2]='mean: '+ mean;
+    result[3]='median: '+ getMedian(array);
     result[4]="min: "+ array[0];
     result[5]="max: "+ array[array.length-1];
     let arrayvariance=variance(array, mean)
