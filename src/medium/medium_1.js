@@ -57,7 +57,7 @@ export function getMedian(array) {
  */
 export function getStatistics(array) {
     const map1 = new Map();
-    map1.set('length',length=array.length);
+    map1.set('length',array.length);
     map1.set('sum',getSum(array));
     map1.set('mean',getSum(array)/array.length);
     map1.set('median',getMedian(array));
