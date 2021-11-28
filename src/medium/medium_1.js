@@ -56,17 +56,15 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
-    let result = new Array(8);
-    let mean=getSum(array)/array.length;
-    result[0]='length: '+array.length;
-    result[1]='sum: '+ getSum(array);
-    result[2]='mean: '+ mean;
-    result[3]='median: '+ getMedian(array);
-    result[4]="min: "+ array[0];
-    result[5]="max: "+ array[array.length-1];
-    let arrayvariance=variance(array, mean)
-    result[6]="variance: "+ arrayvariance;
-    result[7]="standard_deviation: "+ Math.sqrt(arrayvariance);
-    return result;
+    const map1 = new Map();
+    map1.set('length',length=array.length);
+    map1.set('sum',getSum(array));
+    map1.set('mean',getSum(array)/array.length);
+    map1.set('median',getMedian(array));
+    map1.set('min',array[0]);
+    map1.set('max',array[array.length-1]);
+    map1.set('variance',variance(array, mean));
+    map1.set('standard_deviation', Math.sqrt(arrayvariance));
+    return map1;
 }
 
