@@ -56,6 +56,15 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
-
+    let result = new array(8);
+    result[0]=array.length;
+    result[1]=getSum(array);
+    result[2]=getSum(array)/array.length;
+    result[3]=getMedian(array);
+    result[4]=array[0];
+    result[5]=array[array.length-1];
+    result[6]=variance(array, result[2]);
+    result[7]=Math.sqrt(result[6]);
+    return result
 }
 
