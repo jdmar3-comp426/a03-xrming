@@ -45,8 +45,8 @@ export function getIncreasingArray(startNumber, endNumber) {
 export function maxAndMin(numbers) {
     numbers.sort((a, b) => a - b);
     const obj = new Object();
-    obj.min=numbers[0];
     obj.max=numbers[numbers.length-1];
+    obj.min=numbers[0];
     return obj;
 }
 
@@ -61,5 +61,17 @@ export function maxAndMin(numbers) {
  *
  */
 export function countArray(array) {
+    const result = new Object();
+    let length=array.length;
+    while (array.length>0){
+        result[goal+'']
+        for (let i=0; i<array.length; i++) {
+            if (array[i]==goal) {
+                array.splice(i,1);
+                i--;
+            }
+        }
+    }
+
 
 }
