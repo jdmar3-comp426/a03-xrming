@@ -64,14 +64,17 @@ export function countArray(array) {
     const result = new Object();
     let length=array.length;
     while (array.length>0){
-        result[goal+'']
+        var goal=array[0];
+        let count = 0;
+        let keyname = goal +'';
         for (let i=0; i<array.length; i++) {
             if (array[i]==goal) {
                 array.splice(i,1);
+                count++;
                 i--;
             }
         }
+        result[keyname] = count;
     }
-
-
+    return result;
 }
