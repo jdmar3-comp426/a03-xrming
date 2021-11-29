@@ -40,7 +40,7 @@ function avgMpg(data) {
     let highwaymiles = 0;
     let count = 0;
     summiles(...data);
-    function sumcitymiles(item) {
+    function summiles(item) {
         citymiles+=item["city_mpg"];
         highwaymiles+=item["highway_mpg"];
         count++;
