@@ -26,7 +26,13 @@ export function sumToString(a, b) {
  *
  */
 export function getIncreasingArray(startNumber, endNumber) {
-
+    let arl = new Array(endNumber-startNumber+1)
+    let j=0;
+    for (i=startNumber; i<=endNumber; i++){
+        arl[j]=i;
+        j++;
+    }
+    return arl;
 }
 
 /**
@@ -37,7 +43,11 @@ export function getIncreasingArray(startNumber, endNumber) {
  * and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
  */
 export function maxAndMin(numbers) {
-
+    numbers.sort((a, b) => a - b);
+    let obj = new Object();
+    obj.min=numbers[0];
+    obj.max=numbers[numbers.length-1];
+    return obj;
 }
 
 /**
