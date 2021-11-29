@@ -73,7 +73,9 @@ return;
  If only `removeKeyNonDestructive` was called, nothing would have changed.
  */
 export function removeKeyNonDestructive(object, key) {
-
+   const copycat = Object.assign({},object);
+   delete copycat[key];
+   return copycat;
 }
 
 /**
@@ -98,5 +100,9 @@ export function removeKeyNonDestructive(object, key) {
  * @return {*} The object with its keys removed.
  */
 export function removeKeys(object, keyList) {
-
+   const current = Object.assign({},object);
+   for (let i=0; i<keyList; i++) {
+      current = removeKeyNonDestructive(current);
+   }
+   return current;
 }
