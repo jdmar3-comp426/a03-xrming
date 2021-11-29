@@ -53,8 +53,8 @@ function avgMpg(data) {
 function ratioHybrids(data) {
     let count = 0;
     let hybridcount = 0;
-    summiles(...data);
-    function sumhybrid(item) {
+    counthybrid(...data);
+    function counthybrid(item) {
         if (item["hybrid"]) {
             hybridcount++;
         }
