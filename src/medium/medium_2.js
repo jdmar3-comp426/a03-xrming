@@ -20,42 +20,48 @@ see under the methods section
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
 export const allCarStats = {
-    avgMpg:(data) => {
-        const result = new Object();
-        let citymiles = 0;
-        let highwaymiles = 0;
-        let count = 0;
-        summiles(...data);
-        function sumcitymiles(item) {
-            citymiles+=item["city_mpg"];
-            highwaymiles+=item["highway_mpg"];
-            count++;
-        }
-        result.city = citymiles/count;
-        result.highway = highwaymiles/count;
-        return result;
-    },
-    allYearStats: (data)=> {
-        const listofyears = [];
-        addyear(...data)
-        function addyear(item) {
-            listofyears.push(item["year"]);
-        }
-        return getStatistics(listofyears);
-    },
-    ratioHybrids: (data)=> {
-        let count = 0;
-        let hybridcount = 0;
-        summiles(...data);
-        function sumhybrid(item) {
-            if (item["hybrid"]) {
-                hybridcount++;
-            }
-            count++;
-        }
-        return hybridcount/count;
-    },
+    avgMpg: avgMpg(mpg_data),
+    allYearStats:allYearStats(mpg_data),
+    ratioHybrids:ratioHybrids(mpg_data)
 };
+
+function allYearStats(data) {
+    const listofyears = [];
+    addyear(...data)
+    function addyear(item) {
+        listofyears.push(item["year"]);
+    }
+    return getStatistics(listofyears);
+};
+
+function avgMpg(data) {
+    const result = new Object();
+    let citymiles = 0;
+    let highwaymiles = 0;
+    let count = 0;
+    summiles(...data);
+    function sumcitymiles(item) {
+        citymiles+=item["city_mpg"];
+        highwaymiles+=item["highway_mpg"];
+        count++;
+    }
+    result.city = citymiles/count;
+    result.highway = highwaymiles/count;
+    return result;
+};
+
+function ratioHybrids(data) {
+    let count = 0;
+    let hybridcount = 0;
+    summiles(...data);
+    function sumhybrid(item) {
+        if (item["hybrid"]) {
+            hybridcount++;
+        }
+        count++;
+    }
+    return hybridcount/count;
+}
 
 
 /**
