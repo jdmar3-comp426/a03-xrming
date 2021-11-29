@@ -27,7 +27,10 @@ export const allCarStats = {
 
 function allYearStats(data) {
     const listofyears = [];
-    addyear(...data)
+    //addyear(...data)
+    for (let i=0; i<data.length; i++) {
+        addyear(data[i]);
+    }
     function addyear(item) {
         listofyears.push(item["year"]);
     }
@@ -39,7 +42,10 @@ function avgMpg(data) {
     let citymiles = 0;
     let highwaymiles = 0;
     let count = 0;
-    summiles(...data);
+    //summiles(...data);
+    for (let i=0; i<data.length; i++) {
+        summiles(data[i]);
+    }
     function summiles(item) {
         citymiles+=item["city_mpg"];
         highwaymiles+=item["highway_mpg"];
@@ -53,7 +59,10 @@ function avgMpg(data) {
 function ratioHybrids(data) {
     let count = 0;
     let hybridcount = 0;
-    counthybrid(...data);
+    //counthybrid(...data);
+    for (let i=0; i<data.length; i++) {
+        counthybrid(data[i]);
+    }
     function counthybrid(item) {
         if (item["hybrid"]) {
             hybridcount++;
