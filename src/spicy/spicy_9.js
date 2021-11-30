@@ -160,8 +160,8 @@ export const someEven = (arr, test) => {
 export const filter = (arr, test) => {
     const result = new Object();
     result.pass= arr.filter(test);
-    result.fail= arr.filter(failtest(test));
-    function failtest(test) {
+    result.fail= arr.filter(failtest());
+    function failtest() {
         if (!test) {
             return true;
         } else {
