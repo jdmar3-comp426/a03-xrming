@@ -160,13 +160,9 @@ export const someEven = (arr, test) => {
 export const filter = (arr, test) => {
     const result = new Object();
     result.pass= arr.filter(test);
-    result.fail= arr.filter(failtest());
-    function failtest() {
-        if (!test) {
-            return true;
-        } else {
-            return false;
-        }
+    result.fail= array.filter(donotinclude());
+    function donotinclude() {
+        return !result.pass.includes();
     }
     return result;
 };
@@ -188,7 +184,7 @@ export const allEvensAreOdd = (arr) => {
  *   array is an odd number. Use the "someEven" function in this function.
  */
 export const anEvenIsOdd = (arr) => {
-
+    everyEven(arr,x => x%2 === 1);
 };
 
 
@@ -199,5 +195,9 @@ export const anEvenIsOdd = (arr) => {
  *   pass the test. You must use the filter function.
  */
 export const hasExactly = (arr, test, n) => {
-
+    if (filter(arr.test).pass.length==n) {
+        return true;
+    } else {
+        return false
+    }
 };
