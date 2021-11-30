@@ -131,6 +131,15 @@ function ratioHybrids(data) {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
-    avgMpgByYearAndHybrid: undefined
+    makerHybrids:  makerHybrids(mpg_data),
+    avgMpgByYearAndHybrid: avgMpgByYearAndHybrid(mpg_data)
 };
+//Array of objects where keys are the `make` of the car and
+//a list of `hybrids` available (their `id` string). Don't show car makes with 0 hybrids. Sort by the number of hybrids
+//in descending order.
+function makerHybrids(data) {
+
+}
+function avgMpgByYearAndHybrid(data) {
+
+}
