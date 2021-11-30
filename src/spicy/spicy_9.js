@@ -89,7 +89,7 @@ export const tenTimesFifty = () => {
  *    everyEven([1, 1, 0, 1, 1], x => x === 1)  <--  returns false
  */
 export const everyEven = (arr, test) => {
-    if (arr.filter(test)==arr.filter(ateven)) {
+    if (arr.filter(test).toString()==arr.filter(ateven).toString()) {
         return true;
     } else {
         return false;
