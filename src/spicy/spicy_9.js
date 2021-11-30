@@ -160,7 +160,7 @@ export const someEven = (arr, test) => {
 export const filter = (arr, test) => {
     const result = new Object();
     result.pass= arr.filter(test);
-    result.fail= array.filter(donotinclude());
+    result.fail= arr.filter(donotinclude());
     function donotinclude() {
         return !result.pass.includes();
     }
