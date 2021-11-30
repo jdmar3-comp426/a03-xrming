@@ -174,7 +174,7 @@ export const filter = (arr, test) => {
  *   odd numbers. Use the "everyEven" function in this function.
  */
 export const allEvensAreOdd = (arr) => {
-    everyEven(arr,oddtest);
+    return everyEven(arr,oddtest);
 };
 
 function oddtest(x) {
@@ -191,7 +191,7 @@ function oddtest(x) {
  *   array is an odd number. Use the "someEven" function in this function.
  */
 export const anEvenIsOdd = (arr) => {
-    someEven(arr,oddtest);
+    return someEven(arr,oddtest);
 };
 
 
