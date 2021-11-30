@@ -159,10 +159,17 @@ export const someEven = (arr, test) => {
  */
 export const filter = (arr, test) => {
     const result = new Object();
-    result.pass= arr.filter(test);
-    result.fail= arr.filter(donotinclude());
-    function donotinclude(x) {
-        return !result.pass.includes(x);
+    result.pass=[];
+    result.fail=[];
+    for (let i=0; i<arr.length; i++){
+        deal(test,arr[i])
+    }
+    function deal(test,item) {
+        if (test) {
+            result.pass.push(item);
+        } else {
+            result.fail.push(item);
+        }
     }
     return result;
 };
@@ -207,4 +214,4 @@ export const hasExactly = (arr, test, n) => {
     } else {
         return false
     }
-};
+}
