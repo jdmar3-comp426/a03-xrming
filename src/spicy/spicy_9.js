@@ -89,14 +89,19 @@ export const tenTimesFifty = () => {
  *    everyEven([1, 1, 0, 1, 1], x => x === 1)  <--  returns false
  */
 export const everyEven = (arr, test) => {
+    let count=0;
     if (arr.filter(test).toString()==arr.filter(ateven).toString()) {
         return true;
     } else {
         return false;
     }
-    function ateven(array) {
-        for (let i=0;i<array.length; i+=2) {
+    function ateven() {
+        if(count%2==0) {
+            count++;
             return true;
+        } else {
+            count++;
+            return false;
         }
     }
 };
@@ -122,16 +127,12 @@ export const everyEven = (arr, test) => {
  *    someEven([0, 0, 0, 0, 0], x => x === 0)  <--  returns true
  */
 export const someEven = (arr, test) => {
-    if (arr.filter(testandeven()).length>0) {
-        return true;
-    }
-    function testandeven(test,arr) {
-        for (let i=0; i<arr.length; i+=2) {
-            if (test(arr[i])) {
-                return true;
-            }
+    for (let i=0; i<arr.length; i++) {
+        if (i%2==0 && test(arr[i])) {
+            return true;
         }
     }
+     return false;
 };
 
 
@@ -159,7 +160,14 @@ export const someEven = (arr, test) => {
 export const filter = (arr, test) => {
     const result = new Object();
     result.pass= arr.filter(test);
-    result.fail= arr.filter(!test);
+    result.fail= arr.filter(failtest(test));
+    function failtest(test) {
+        if (!test) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     return result;
 };
 
