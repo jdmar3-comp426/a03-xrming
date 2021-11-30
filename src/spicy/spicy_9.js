@@ -165,7 +165,7 @@ export const filter = (arr, test) => {
         deal(test,arr[i])
     }
     function deal(test,item) {
-        if (test) {
+        if (test(item)) {
             result.pass.push(item);
         } else {
             result.fail.push(item);
