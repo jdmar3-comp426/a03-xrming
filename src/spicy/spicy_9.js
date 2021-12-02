@@ -166,9 +166,9 @@ export const filter = (arr, test) => {
     }
     function deal(test,item) {
         if (test(item)) {
-            result.fail.push(item);
-        } else {
             result.pass.push(item);
+        } else {
+            result.fail.push(item);
         }
     }
     return result;
