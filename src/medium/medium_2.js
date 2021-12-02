@@ -155,8 +155,8 @@ function makerHybrids(data) {
             } else {
                 let result = new Object();
                 result.make = data[i].make;
-                result.hybrid=[];
-                result.hybrid.push(data[i].id);
+                result.hybrids=[];
+                result.hybrids.push(data[i].id);
                 results.push(result);
             }
         }
