@@ -206,5 +206,4 @@ function avgMpgByYearAndHybrid(data) {
     }
 }
 
-function hybridandavg()
 
