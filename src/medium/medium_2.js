@@ -198,12 +198,12 @@ function avgMpgByYearAndHybrid(data) {
         }
     }
     for (const prop in gather) {
-        let hybridavg = gather.prop.hybrid.avgMpg();
-        let nothybridavg = gather.prop.notHybrid.avgMpg();
-        delete gather.prop.hybrid;
-        delete gather.prop.notHybrid;
-        gather.prop.hybrid=hybridavg;
-        gather.prop.notHybrid=nothybridavg
+        let hybridavg = gather[prop].hybrid.avgMpg();
+        let nothybridavg = gather[prop].notHybrid.avgMpg();
+        delete gather[prop].hybrid;
+        delete gather[prop].notHybrid;
+        gather[prop].hybrid=hybridavg;
+        gather[prop].notHybrid=nothybridavg
     }
 }
 
