@@ -205,6 +205,7 @@ function avgMpgByYearAndHybrid(data) {
         gather[prop].hybrid=hybridavg;
         gather[prop].notHybrid=nothybridavg
     }
+    return gather;
 }
 
 
