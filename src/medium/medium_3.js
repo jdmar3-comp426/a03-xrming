@@ -58,7 +58,7 @@ export function searchMpg(car_data, minCity, minHighway) {
         }
         return false;
     }
-    let result = whatsleft.sort(hwmpgsort());
+    let result = whatsleft.sort(hwmpgsort);
     function hwmpgsort(a,b) {
         if (a.highway_mpg>b.highway_mpg) {
             return -1;
@@ -81,14 +81,14 @@ export function searchMpg(car_data, minCity, minHighway) {
  * @returns {[]} array of cars
  */
 export function searchName(car_data, searchTerm) {
-    let result = car_data.filter(filtername());
+    let result = car_data.filter(filtername);
     function filtername(item) {
         if (item.id.toLowerCase().includes(searchTerm.toLowerCase())) {
             return true;
         }
         return false;
     }
-    result.sort(whensub())
+    result.sort(whensub)
     function whensub(a,b) {
         if (a.id.indexOf(searchTerm)<b.id.indexOf(searchTerm)) {
             return -1;
@@ -111,14 +111,14 @@ export function searchName(car_data, searchTerm) {
  * @returns {[]} an array of car objects
  */
 export function searchByYear(car_data, years) {
-    let result = car_data.filter(filteryear());
+    let result = car_data.filter(filteryear);
     function filteryear(item) {
         if (years.includes(item.year)) {
             return true;
         }
         return false;
     }
-    result.sort(year())
+    result.sort(year)
     function year(a,b) {
         if (a.year>b.year) {
             return -1;
