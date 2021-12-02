@@ -138,8 +138,47 @@ export const moreStats = {
 //a list of `hybrids` available (their `id` string). Don't show car makes with 0 hybrids. Sort by the number of hybrids
 //in descending order.
 function makerHybrids(data) {
+    let results = [];
+    data.filter(data[i].hybrid)
+    for (let i=0; i<data.length; i++) {
+        if (data[i].hybrid) {
+            let desiredmake = data[i].make;
+            let index = results.findIndex(hasmake);
+            function hasmake (ele) {
+                if (ele.make=desiredmake) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (index!==-1) {
+                results[index].hybrids.push(data[i].id);
+            } else {
+                let result = new Object();
+                result.make = data[i].make;
+                result.hybrid=[data[i].id];
+                results.push(result);
+            }
+        }
+    }
+    results.sort(compare);
+    function compare(a,b) {
+        if (a.hybrid.length>b.hybrid.length) {
+            return -1;
+        }
+        if (a.hybrid.length<b.hybrid.length) {
+            return 1;
+        }
+        return 0;
+    }
+    return results;
+}
+
+
+function avgMpgByYearAndHybrid(data) {
 
 }
-function avgMpgByYearAndHybrid(data) {
+
+function reducer () {
 
 }
