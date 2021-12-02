@@ -153,6 +153,7 @@ function makerHybrids(data) {
             if (index!==-1) {
                 results[index].hybrids.push(data[i].id);
             } else {
+
                 let result = new Object();
                 result.make = data[i].make;
                 result.hybrids=[];
@@ -176,9 +177,34 @@ function makerHybrids(data) {
 
 
 function avgMpgByYearAndHybrid(data) {
-
+    let gather = new Object();
+    for (let i=0; i<data.length; i++) {
+        if (data[i].year in gather) {
+            if (data[i].hybrid) {
+                gather[data[i].year.toString()].hybrid.push(data[i]);
+            } else {
+                gather[data[i].year.toString()].notHybrid.push(data[i]);
+            }
+        } else {
+            let newyear= data[i].year.toString();
+            gather[newyear].hybrid=[];
+            gather[newyear].notHybrid=[];
+            if (data[i].hybrid) {
+                gather[newyear].hybrid.push(data[i]);
+            } else {
+                gather[newyear].notHybrid.push(data[i]);
+            }
+        }
+    }
+    for (const prop in gather) {
+        let hybridavg = gather.prop.hybrid.avgMpg();
+        let nothybridavg = gather.prop.notHybrid.avgMpg();
+        delete gather.prop.hybrid;
+        delete gather.prop.notHybrid;
+        gather.prop.hybrid=hybridavg;
+        gather.prop.notHybrid=nothybridavg
+    }
 }
 
-function reducer () {
+function hybridandavg()
 
-}
