@@ -27,10 +27,10 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
     }
     let result = whatsleft.sort(hpsort());
     function hpsort(a,b) {
-        if (a.horsepower>b.horsepower) {
+        if (a["horsepower"]>b["horsepower"]) {
             return -1;
         }
-        if (a.horsepower<b.horsepower) {
+        if (a["horsepower"]<b["horsepower"]) {
             return 1;
         }
         return 0;
