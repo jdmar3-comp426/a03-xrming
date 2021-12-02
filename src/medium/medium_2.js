@@ -187,6 +187,7 @@ function avgMpgByYearAndHybrid(data) {
             }
         } else {
             let newyear= data[i].year.toString();
+            gather[newyear] =new Object();
             gather[newyear].hybrid=[];
             gather[newyear].notHybrid=[];
             if (data[i].hybrid) {
