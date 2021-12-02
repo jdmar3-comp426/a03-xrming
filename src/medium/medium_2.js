@@ -131,7 +131,7 @@ function ratioHybrids(data) {
  * }
  */
 export const moreStats = {
-    makerHybrids:  makerHybrids(mpg_data),
+    makerHybrids: makerHybrids(mpg_data),
     avgMpgByYearAndHybrid: avgMpgByYearAndHybrid(mpg_data)
 };
 //Array of objects where keys are the `make` of the car and
@@ -139,7 +139,6 @@ export const moreStats = {
 //in descending order.
 function makerHybrids(data) {
     let results = [];
-    data.filter(data[i].hybrid)
     for (let i=0; i<data.length; i++) {
         if (data[i].hybrid) {
             let desiredmake = data[i].make;
