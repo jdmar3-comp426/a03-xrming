@@ -18,6 +18,24 @@ queries.
  *
  */
 export function searchHighPower(car_data, minHorsepower, minTorque) {
+    let whatsleft = car_data.filter(filterhpt);
+    function filterhpt(element) {
+        if (element.horsepower>=minHorsepower && element.torque>=minTorque) {
+            return true;
+        }
+        return false;
+    }
+    let result = whatsleft.sort(hpsort);
+    function hpsort(a,b) {
+        if (a["horsepower"]>b["horsepower"]) {
+            return -1;
+        }
+        if (a["horsepower"]<b["horsepower"]) {
+            return 1;
+        }
+        return 0;
+    }
+    return result;
 
 }
 
@@ -33,7 +51,24 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
  *
  */
 export function searchMpg(car_data, minCity, minHighway) {
-
+    let whatsleft = car_data.filter(filtermpg);
+    function filtermpg(element) {
+        if (element.highway_mpg>=minHighway && element.city_mpg>=minCity) {
+            return true;
+        }
+        return false;
+    }
+    let result = whatsleft.sort(hwmpgsort);
+    function hwmpgsort(a,b) {
+        if (a.highway_mpg>b.highway_mpg) {
+            return -1;
+        }
+        if (a.highway_mpg<b.highway_mpg) {
+            return 1;
+        }
+        return 0;
+    }
+    return result;
 }
 
 
@@ -46,7 +81,24 @@ export function searchMpg(car_data, minCity, minHighway) {
  * @returns {[]} array of cars
  */
 export function searchName(car_data, searchTerm) {
-
+    let result = car_data.filter(filtername);
+    function filtername(item) {
+        if (item.id.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
+    result.sort(whensub)
+    function whensub(a,b) {
+        if (a.id.indexOf(searchTerm)<b.id.indexOf(searchTerm)) {
+            return -1;
+        }
+        if (a.id.indexOf(searchTerm)>b.id.indexOf(searchTerm)) {
+            return 1;
+        }
+        return 0;
+    }
+    return result;
 }
 
 
@@ -59,5 +111,22 @@ export function searchName(car_data, searchTerm) {
  * @returns {[]} an array of car objects
  */
 export function searchByYear(car_data, years) {
-
+    let result = car_data.filter(filteryear);
+    function filteryear(item) {
+        if (years.includes(item.year)) {
+            return true;
+        }
+        return false;
+    }
+    result.sort(year)
+    function year(a,b) {
+        if (a.year>b.year) {
+            return -1;
+        }
+        if (a.year<b.year) {
+            return 1;
+        }
+        return 0;
+    }
+    return result;
 }

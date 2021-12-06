@@ -20,10 +20,57 @@ see under the methods section
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
+    avgMpg: avgMpg(mpg_data),
+    allYearStats:allYearStats(mpg_data),
+    ratioHybrids:ratioHybrids(mpg_data)
 };
+
+function allYearStats(data) {
+    const listofyears = [];
+    //addyear(...data)
+    for (let i=0; i<data.length; i++) {
+        addyear(data[i]);
+    }
+    function addyear(item) {
+        listofyears.push(item["year"]);
+    }
+    return getStatistics(listofyears);
+};
+
+function avgMpg(data) {
+    const result = new Object();
+    let citymiles = 0;
+    let highwaymiles = 0;
+    let count = 0;
+    //summiles(...data);
+    for (let i=0; i<data.length; i++) {
+        summiles(data[i]);
+    }
+    function summiles(item) {
+        citymiles+=item["city_mpg"];
+        highwaymiles+=item["highway_mpg"];
+        count++;
+    }
+    result.city = citymiles/count;
+    result.highway = highwaymiles/count;
+    return result;
+};
+
+function ratioHybrids(data) {
+    let count = 0;
+    let hybridcount = 0;
+    //counthybrid(...data);
+    for (let i=0; i<data.length; i++) {
+        counthybrid(data[i]);
+    }
+    function counthybrid(item) {
+        if (item["hybrid"]) {
+            hybridcount++;
+        }
+        count++;
+    }
+    return hybridcount/count;
+}
 
 
 /**
@@ -84,6 +131,81 @@ export const allCarStats = {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
-    avgMpgByYearAndHybrid: undefined
+    makerHybrids: makerHybrids(mpg_data),
+    avgMpgByYearAndHybrid: avgMpgByYearAndHybrid(mpg_data)
 };
+//Array of objects where keys are the `make` of the car and
+//a list of `hybrids` available (their `id` string). Don't show car makes with 0 hybrids. Sort by the number of hybrids
+//in descending order.
+function makerHybrids(data) {
+    let results = [];
+    for (let i=0; i<data.length; i++) {
+        if (data[i].hybrid) {
+            let desiredmake = data[i].make;
+            let index = results.findIndex(hasmake);
+            function hasmake (ele) {
+                if (ele.make=desiredmake) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (index!==-1) {
+                results[index].hybrids.push(data[i].id);
+            } else {
+
+                let result = new Object();
+                result.make = data[i].make;
+                result.hybrids=[];
+                result.hybrids.push(data[i].id);
+                results.push(result);
+            }
+        }
+    }
+    results.sort(compare);
+    function compare(a,b) {
+        if (a.hybrid.length>b.hybrid.length) {
+            return -1;
+        }
+        if (a.hybrid.length<b.hybrid.length) {
+            return 1;
+        }
+        return 0;
+    }
+    return results;
+}
+
+
+function avgMpgByYearAndHybrid(data) {
+    let gather = new Object();
+    for (let i=0; i<data.length; i++) {
+        if (data[i].year in gather) {
+            if (data[i].hybrid) {
+                gather[data[i].year.toString()].hybrid.push(data[i]);
+            } else {
+                gather[data[i].year.toString()].notHybrid.push(data[i]);
+            }
+        } else {
+            let newyear= data[i].year.toString();
+            gather[newyear] =new Object();
+            gather[newyear].hybrid=[];
+            gather[newyear].notHybrid=[];
+            if (data[i].hybrid) {
+                gather[newyear].hybrid.push(data[i]);
+            } else {
+                gather[newyear].notHybrid.push(data[i]);
+            }
+        }
+    }
+    for (const prop in gather) {
+        let hybridavg = avgMpg(gather[prop].hybrid);
+        let nothybridavg = avgMpg(gather[prop].notHybrid);
+        delete gather[prop].hybrid;
+        delete gather[prop].notHybrid;
+        gather[prop].hybrid=hybridavg;
+        gather[prop].notHybrid=nothybridavg
+    }
+    return gather;
+}
+
+
